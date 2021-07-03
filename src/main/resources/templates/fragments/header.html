@@ -1,0 +1,16 @@
+<header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <div style="background-color: black"><span style="color: white">This is the header!</span></div>
+  <div>
+    <a th:href="@{profile}">Go to profile page</a><br>
+    <!--<a th:href="@{admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" >Go to admin page</a><br> -->
+    <!--<a th:href="@{admin}" th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" >Go to admin page</a>-->
+    <!--<br th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}"> &lt;!&ndash; just for a joke! &ndash;&gt;-->
+    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" >
+      <a th:href="@{admin}">Go to admin page</a>
+    </div>
+    <a href="/" >Go to home page</a><br>
+    <div class="button-group" sec:authorize="isAuthenticated()">
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+</header>
